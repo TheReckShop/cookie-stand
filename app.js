@@ -17,3 +17,43 @@ var firstAndPike = {
     }
   },
 }
+
+var seaTacAirport = {
+  locationName: 'SeaTac Airport',
+  minCustPerHour: 3,
+  maxCustPerHour: 24,
+  avgCookiesPerCust: 1.2,
+  randomCustPerHour: [],
+  totalCookiesSoldEachHour: [],
+  totalDailyCookieSales: 0,
+}
+
+var seattleCenter = {
+  locationName: 'Seattle Center',
+  minCustPerHour: 11,
+  maxCustPerHour: 38,
+  avgCookiesPerCust: 3.7,
+  randomCustPerHour: [],
+  totalCookiesSoldEachHour: [],
+  totalDailyCookieSales: 0,
+}
+
+var capitolHill = {
+  locationName: 'Capitol Hill',
+  minCustPerHour: 20,
+  maxCustPerHour: 38,
+  avgCookiesPerCust: 2.3,
+  randomCustPerHour: [],
+  totalCookiesSoldEachHour: [],
+  totalDailyCookieSales: 0,
+}
+
+var alki = {
+  locationName: 'Alki',
+  minCustPerHour: 2,
+  maxCustPerHour: 16,
+  avgCookiesPerCust: 4.6,
+  randomCustPerHour: [],
+  totalCookiesSoldEachHour: [],
+  totalDailyCookieSales: 0,
+}
