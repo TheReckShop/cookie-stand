@@ -1,6 +1,6 @@
 'use strict';
 
-var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',];
 
 var firstAndPike = {
   locationName: 'First and Pike',
@@ -12,29 +12,31 @@ var firstAndPike = {
   totalDailyCookieSales: 0,
   calcRandomCustPerHour: function() {
     for (var i = 0; i < hours.length; i++) {
-      this.randomCustPerHour[i] = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1) + this.minCustPerHour);
+      this.randomCustPerHour.push(Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour);
+      console.log(this.randomCustPerHour);
     }
   },
-  calcTotalCookiesSoldEachHour: function() {
+  calcTotalCookiesSoldPerHour: function() {
+    this.calcRandomCustPerHour();
     for (var i = 0; i < hours.length; i++) {
-      this.calcRandomCustPerHour();
-      this.totalCookiesSoldPerHour.push(Math.round(this.avgCookiesPerCust * this.randomCustPerHour[i]));
+      this.totalCookiesSoldPerHour.push(Math.ceil(this.avgCookiesPerCust * this.randomCustPerHour[i]));
       // console.log(this.totalCookiesSoldPerHour[i]);
       this.totalDailyCookieSales += this.totalCookiesSoldPerHour[i];
       console.log(this.totalDailyCookieSales);
     }
+    console.log(this.totalCookiesSoldPerHour);
   },
   render: function () {
-    firstAndPike.calcRandomCustPerHour();
-    firstAndPike.calcTotalCookiesSoldEachHour();
-
-
-    var pikeHourlySales = document.getElementById('firstAndPike');
+    this.calcTotalCookiesSoldPerHour();
+    var emptyUL = document.getElementById('firstAndPikeUL');
     for (var i = 0; i < hours.length; i++) {
       var liEl = document.createElement('li');
-      liEl.textContent = hours[i] + this.totalCookiesSoldPerHour[i];
-      pikeHourlySales.appendChild(liEl);
+      liEl.textContent = hours[i] + ': ' + this.totalCookiesSoldPerHour[i] + ' cookies';
+      emptyUL.appendChild(liEl);
     }
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total ' + this.totalDailyCookieSales + ' cookies';
+    emptyUL.appendChild(liEl);
   }
 };
 firstAndPike.render();
@@ -48,7 +50,7 @@ firstAndPike.render();
 //   maxCustPerHour: 24,
 //   avgCookiesPerCust: 1.2,
 //   randomCustPerHour: [],
-//   totalCookiesSoldEachHour: [],
+//   totalCookiesSoldPerHour: [],
 //   totalDailyCookieSales: 0,
 // calcRandomCustPerHour: function() {
 //   for (var i = 0; i < hours.length; i++) {
@@ -64,7 +66,7 @@ firstAndPike.render();
 //   maxCustPerHour: 38,
 //   avgCookiesPerCust: 3.7,
 //   randomCustPerHour: [],
-//   totalCookiesSoldEachHour: [],
+//   totalCookiesSoldPerHour: [],
 //   totalDailyCookieSales: 0,
 // }
 //
@@ -74,7 +76,7 @@ firstAndPike.render();
 //   maxCustPerHour: 38,
 //   avgCookiesPerCust: 2.3,
 //   randomCustPerHour: [],
-//   totalCookiesSoldEachHour: [],
+//   totalCookiesSoldPerHour: [],
 //   totalDailyCookieSales: 0,
 // }
 //
@@ -84,6 +86,6 @@ firstAndPike.render();
 //   maxCustPerHour: 16,
 //   avgCookiesPerCust: 4.6,
 //   randomCustPerHour: [],
-//   totalCookiesSoldEachHour: [],
+//   totalCookiesSoldPerHour: [],
 //   totalDailyCookieSales: 0,
 // }
